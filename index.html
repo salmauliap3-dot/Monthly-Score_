@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistem Ranking Kelas</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+      color: #e0e0e0;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      letter-spacing: 2px;
+      font-size: 24px;
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .ranking {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+      margin: 8px 0;
+      border-radius: 8px;
+      transition: 0.3s;
+      border-left: 4px solid transparent;
+    }
+
+    .ranking:hover {
+      background: rgba(255,255,255,0.05);
+      transform: scale(1.02);
+    }
+
+    .rank {
+      font-weight: bold;
+    }
+
+    .name {
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    .score {
+      opacity: 0.7;
+    }
+
+    /* Highlight Top 3 */
+    .top1 {
+      border-left: 4px solid #6aff6a;
+      background: rgba(106,255,106,0.05);
+    }
+
+    .top2 {
+      border-left: 4px solid #aaaaaa;
+      background: rgba(200,200,200,0.05);
+    }
+
+    .top3 {
+      border-left: 4px solid #8b6f47;
+      background: rgba(139,111,71,0.08);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      opacity: 0.5;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  SISTEM RANKING KELAS
+</header>
+
+<div class="container" id="rankingList">
+  <!-- Ranking akan muncul di sini -->
+</div>
+
+<footer>
+  Sistem aktif — semua nilai dipantau
+</footer>
+
+<script>
+  const data = [
+    { name: "A", score: 98 },
+    { name: "B", score: 95 },
+    { name: "C", score: 92 },
+    { name: "D", score: 88 },
+    { name: "E", score: 85 },
+    { name: "F", score: 82 },
+    { name: "G", score: 80 }
+  ];
+
+  // Urutkan berdasarkan nilai
+  data.sort((a, b) => b.score - a.score);
+
+  const container = document.getElementById("rankingList");
+
+  data.forEach((student, index) => {
+    const div = document.createElement("div");
+    div.classList.add("ranking");
+
+    if (index === 0) div.classList.add("top1");
+    if (index === 1) div.classList.add("top2");
+    if (index === 2) div.classList.add("top3");
+
+    div.innerHTML = `
+      <div class="rank">#${index + 1}</div>
+      <div class="name">${student.name}</div>
+      <div class="score">${student.score}</div>
+    `;
+
+    container.appendChild(div);
+  });
+</script>
+
+</body>
+</html>
